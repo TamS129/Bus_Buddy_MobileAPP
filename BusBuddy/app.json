@@ -32,10 +32,17 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+
+    "config": {
+      "googleMaps": {
+        "apiKey": "AIzaSyAV0FdLMaUa73r1DZoIlvi5XYNCm-6Ku6M"  
+      }
   }
+}
 }
