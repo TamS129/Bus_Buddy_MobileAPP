@@ -14,38 +14,49 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        // Keep icon colors as they are without affecting them
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault, // Keep icon color as is
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
+        tabBarShowLabel: false,
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
           default: {},
         }),
       }}>
+     
+      <Tabs.Screen
+        name="AddFavorite"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="add.fill" color={color} />
+          ),
+        
+          tabBarStyle: {
+            backgroundColor: Colors[colorScheme ?? 'light'].tabBarBackground,
+          },
+          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, // Active background color
+        }}
+      />
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
+          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, // Active background color
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="FavoritesList"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
-        name = "favorites"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="heart.fill" color={color} />
+          ),
+          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, // Active background color
         }}
       />
     </Tabs>
