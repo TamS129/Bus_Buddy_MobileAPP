@@ -87,7 +87,6 @@ const UserProfile: React.FC<UserProfileProps> = ({
               onChangeText={setUserId}
               placeholder="Enter your User ID"
               placeholderTextColor="#888"
-              keyboardType="numeric"
             />
             {error ? (
               <Text style={styles.errorText}>{error}</Text>
