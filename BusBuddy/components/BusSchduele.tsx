@@ -1,46 +1,91 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 interface BusSchdueleProps {
-  stopName: string;
-  onClose: () => void;
-  children?: React.ReactNode; // Add children prop
+    stopName: string;
+    onClose: () => void;
+    children?: React.ReactNode;
 }
 
 const BusSchduele: React.FC<BusSchdueleProps> = ({ stopName, onClose, children }) => {
-  return (
-    <View style={styles.scheduleContainer}>
-      <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-        <Text>Exit</Text>
-      </TouchableOpacity>
-      <Text style={styles.schHeader}> Schduele for {stopName} </Text>
-      {children} {/* Render children */}
-    </View>
-  );
+    return (
+        <View style={styles.modalContainer}>
+            <View style={styles.scheduleContainer}>
+                <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+                    
+                    <Text style={styles.closeText}>Exit</Text>
+                    
+                </TouchableOpacity>
+
+                <Text style={styles.schHeader}>Schedule for {stopName}</Text>
+                {children && (
+                    <View>
+                        {React.Children.map(children, (child, index) => {
+
+                            if (React.isValidElement(child) && child.type === Text) {
+                                const textContent = child.props.children as string;
+                                const [arrivalTime, departureTime] = textContent.split(", ");
+                                return (
+                                    <View key={index} style={styles.timeContainer}>
+
+                                        <Text style={styles.timeLabel}>Arrival:</Text>
+                                        <Text style={styles.timeValue}>{arrivalTime.replace("Arrival: ", "")}</Text>
+
+                                        <Text style={styles.timeLabel}>Departure:</Text>
+                                        <Text style={styles.timeValue}>{departureTime.replace("Departure: ", "")}</Text>
+                                    </View>
+                                );
+                            }
+                            return child;
+                        })}
+                    </View>
+                )}
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  scheduleContainer: {
-    width: 200,
-    backgroundColor: 'white',
-    borderLeftWidth: 2,
-    borderLeftColor: 'lightgray',
-    padding: 15,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-  },
-  schHeader: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  closeButton: {
-    alignSelf: 'flex-end',
-    padding: 5,
-    marginBottom: 5,
-  },
+    modalContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    scheduleContainer: {
+        width: "80%",
+        backgroundColor: "white",
+        padding: 20,
+        borderRadius: 10,
+        elevation: 5,
+    },
+    schHeader: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 15,
+        textAlign: "center",
+    },
+    closeButton: {
+        alignSelf: "flex-end",
+        padding: 10,
+        marginBottom: 10,
+    },
+    closeText: {
+        fontSize: 16,
+        color: "red",
+    },
+    timeContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 5,
+    },
+    timeLabel: {
+        fontWeight: "bold",
+        marginRight: 5,
+    },
+    timeValue: {
+        flex: 1,
+    },
 });
 
 export default BusSchduele;
