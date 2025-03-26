@@ -3,18 +3,21 @@ import { View, Text, FlatList, ActivityIndicator, StyleSheet, StatusBar } from '
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import axios from 'axios';
 
+
 const FavoriteStops = ({ userID }: { userID: string }) => {
   const [stopIDs, setStopIDs] = useState<number[]>([]);
   const [loading, setLoading] = useState(true);
 
+
     const uid = 4567
+    console.log(uid.toString());
 
   useEffect(() => {
     const fetchFavorites = async () => {
 
       try {
         const res = await axios.post('http://db.scholomance.io:2501/api/favorites/query', {
-          query: "SELECT stop_id FROM favorites WHERE userID = 4567"
+          query: "SELECT stop_id FROM favorites WHERE userID = " + uid.toString()
         });
 
         const ids = res.data.map((fav: any) => fav.stop_id);
