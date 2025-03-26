@@ -29,9 +29,10 @@ const UserProfile: React.FC<UserProfileProps> = ({
       });
 
       // if not, add user to the table with only userId
+      // 000000 is a filler bus stop_id
       if (resp.data.length === 0) {
         await axios.post('http://db.scholomance.io:2501/api/favorites/query', {
-          query: `INSERT INTO favorites(userID) VALUES  (${userId})`
+          query: `INSERT INTO favorites(userID, stop_id) VALUES  (${userId}, 000000)`
         });
       }
 
