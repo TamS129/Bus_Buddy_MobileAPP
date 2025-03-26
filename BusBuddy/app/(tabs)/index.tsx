@@ -166,52 +166,72 @@ export default function App() {
     ];
 
     return (
-        <View style={styles.container}>
-           <Menu items={menuItems} />
-            {loading ? (
-                <ActivityIndicator size="large" color="#0000ff" />
-            ) : region ? (
-                <MapView
-                    style={styles.map}
-                    initialRegion={region}
-                    onRegionChange={handleRegionChange}
-                    onRegionChangeComplete={handleRegionChangeComplete}
-                >
-                    {stops.map((stop) => (
-                        <BusStopMarker
-                            key={stop.id ? String(stop.id) : String(Math.random())}
-                            stopID={stop.stop_id} 
-                            stopName={stop.stop_name}
-                            latitude={parseFloat(stop.stop_lat)}
-                            longitude={parseFloat(stop.stop_lon)}
-                            onPress={() => handleMarkerPress(stop.stop_id)} 
-                            pinColor="#2DAEC5"
-                        />
-                    ))}
-                </MapView>
-            ) : null}
-            {selectedStop && (
-                <BusSchduele stopName={selectedStop.stop_name} onClose={closeSchedule}>
-
-                    {stopTimes.map((time, index) => (
-                        <Text key={index}>
-                            Arrival: {time.arrival_time}, Departure: {time.departure_time}
-                        </Text>
-                    ))}
-                    
-                </BusSchduele>
-            )}
-            
+      <View style={styles.container}>
+        <View style={styles.menuContainer}>
+          <Menu items={menuItems} />
         </View>
+    
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : region ? (
+          <MapView
+            style={styles.map}
+            initialRegion={region}
+            onRegionChange={handleRegionChange}
+            onRegionChangeComplete={handleRegionChangeComplete}
+            testID="map-view"
+          >
+            {stops.map((stop) => (
+              <BusStopMarker
+                key={stop.id ? String(stop.id) : String(Math.random())}
+                stopID={stop.stop_id}
+                stopName={stop.stop_name}
+                latitude={parseFloat(stop.stop_lat)}
+                longitude={parseFloat(stop.stop_lon)}
+                onPress={() => handleMarkerPress(stop.stop_id)}
+                pinColor="#2DAEC5"
+              />
+            ))}
+          </MapView>
+        ) : null}
+    
+    {selectedStop && (
+      <BusSchduele stopName={selectedStop.stop_name} onClose={closeSchedule}>
+      <View style={styles.busSchedule}> 
+        {stopTimes.map((time, index) => (
+          <Text key={index}>
+            Arrival: {time.arrival_time}, Departure: {time.departure_time}
+          </Text>
+        ))}
+      </View>
+      </BusSchduele>
+)}
+      </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    map: {
-        width: '100%',
-        height: '100%',
-    },
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+  menuContainer: {
+    position: 'absolute', 
+    top: 10,
+    right: 10,
+    zIndex: 1000, 
+  },
+  busSchedule: {
+    position: 'absolute', 
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white', 
+    padding: 10, 
+    zIndex: 1,  
+  },
 });
