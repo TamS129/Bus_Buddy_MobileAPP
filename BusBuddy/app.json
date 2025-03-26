@@ -33,16 +33,16 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-asset"
+      "expo-asset",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
     },
-
     "config": {
       "googleMaps": {
-        "apiKey": "Ask Tam for API Key"  
+        "apiKey": "Ask Tam for API Key"
       }
+    }
   }
-}
 }
