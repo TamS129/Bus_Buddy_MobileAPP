@@ -9,7 +9,10 @@ export default function TabBarBackground() {
     <View
       style={{
         flex: 1,
-        backgroundColor: Colors[colorScheme ?? 'light'].tabBarBackground
+        backgroundColor: Colors[colorScheme ?? 'light'].tabBarBackground,
+        
+
+
       }}
     />
   );

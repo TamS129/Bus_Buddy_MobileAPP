@@ -14,8 +14,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        // Keep icon colors as they are without affecting them
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault, // Keep icon color as is
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault, 
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
@@ -38,7 +37,7 @@ export default function TabLayout() {
           tabBarStyle: {
             backgroundColor: Colors[colorScheme ?? 'light'].tabBarBackground,
           },
-          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, // Active background color
+          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, 
         }}
       />
       <Tabs.Screen
@@ -47,7 +46,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
-          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, // Active background color
+          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, 
         }}
       />
       <Tabs.Screen
@@ -56,7 +55,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="heart.fill" color={color} />
           ),
-          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, // Active background color
+          tabBarActiveBackgroundColor: Colors[colorScheme ?? 'light'].tabIconSelected, 
         }}
       />
     </Tabs>

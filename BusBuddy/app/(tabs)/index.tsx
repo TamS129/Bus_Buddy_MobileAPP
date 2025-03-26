@@ -160,7 +160,7 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-          
+
             {loading ? (
                 <ActivityIndicator size="large" color="#0000ff" />
             ) : region ? (
@@ -173,11 +173,11 @@ export default function App() {
                     {stops.map((stop) => (
                         <BusStopMarker
                             key={stop.id ? String(stop.id) : String(Math.random())}
-                            stopID={stop.stop_id} // Used stop_id
+                            stopID={stop.stop_id} 
                             stopName={stop.stop_name}
                             latitude={parseFloat(stop.stop_lat)}
                             longitude={parseFloat(stop.stop_lon)}
-                            onPress={() => handleMarkerPress(stop.stop_id)} // Used stop_id
+                            onPress={() => handleMarkerPress(stop.stop_id)} 
                             pinColor="#2DAEC5"
                         />
                     ))}
