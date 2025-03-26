@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import UserProfile from '../../components/UserProfile';
+import UserProfile from './UserProfile';
 // import Settings component into here as well
 
 interface MenuItem {

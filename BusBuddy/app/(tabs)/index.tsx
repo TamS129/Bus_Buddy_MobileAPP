@@ -3,9 +3,12 @@ import MapView, { Region } from 'react-native-maps';
 import { StyleSheet, View, Alert, ActivityIndicator, Text } from 'react-native'; 
 import BusStopMarker from '../../components/BusMarker';
 import BusSchduele from '../../components/BusSchduele';
+import menu from '../../components/menu';
 import * as Location from 'expo-location';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
+import UserProfile from '@/components/UserProfile';
+import Menu from '../../components/menu';
 
 //Interface to use the stops globally throught the functions for the map.
 interface Stop {
@@ -158,9 +161,14 @@ export default function App() {
         setStopTimes([]);
     };
 
+    const menuItems = [
+      { label: 'Settings', onPress: () => Alert.alert('Settings') },
+      { label: 'Logout', onPress: () => Alert.alert('Logout'), requiresAuth: true },
+    ];
+
     return (
         <View style={styles.container}>
-
+           <Menu items={menuItems} />
             {loading ? (
                 <ActivityIndicator size="large" color="#0000ff" />
             ) : region ? (
@@ -194,6 +202,7 @@ export default function App() {
                     
                 </BusSchduele>
             )}
+            
         </View>
     );
 }
