@@ -27,24 +27,21 @@ const UserProfile: React.FC<UserProfileProps> = ({
       const resp = await axios.post('http://db.scholomance.io:2501/api/favorites/query', {
         query: `SELECT * FROM favorites WHERE userID = ${userId}`
       });
-
-      // if not, add user to the table with only userId
-      // 000000 is a filler bus stop_id
-      if (resp.data.length === 0) {
-        await axios.post('http://db.scholomance.io:2501/api/favorites/query', {
-          query: `INSERT INTO favorites(userID, stop_id) VALUES  (${userId}, 000000)`
-        });
+      
+    } catch { //If user does not exist it automatically creates a new user. 
+        axios.post('http://db.scholomance.io:2501/api/favorites', {
+          "userID": `${userId}`,
+          "stop_id": 111111
+        });  
       }
-
+    finally {
       setIsLoggedIn(true);
       setIsModalVisible(false);
       setError('');
-      
       onUserLogin && onUserLogin(userId);
-    } catch (error) {
-      console.error('Login error:', error);
-      setError("Login failed! Try again");
+      
     }
+      
   };
 
   const handleLogout = () => {
@@ -115,7 +112,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
 const styles = StyleSheet.create({
   loginButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#2DAEC5',
     padding: 10,
     borderRadius: 5,
   },
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   logoutButton: {
-    backgroundColor: '#dc3545',
+    backgroundColor: '#2DAEC5',
     padding: 10,
     borderRadius: 5,
   },
@@ -161,7 +158,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   modalButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#2DAEC5',
     padding: 10,
     borderRadius: 5,
     width: '45%',

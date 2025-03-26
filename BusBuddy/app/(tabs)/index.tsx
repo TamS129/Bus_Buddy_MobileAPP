@@ -162,8 +162,7 @@ export default function App() {
     };
 
     const menuItems = [
-      { label: 'Settings', onPress: () => Alert.alert('Settings') },
-      { label: 'Logout', onPress: () => Alert.alert('Logout'), requiresAuth: true },
+      { label: 'Settings', onPress: () => Alert.alert('Settings') }
     ];
 
     return (

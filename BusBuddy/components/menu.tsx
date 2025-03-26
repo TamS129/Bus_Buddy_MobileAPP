@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   menuButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#2DAEC5',
     padding: 10,
     borderRadius: 5,
     width: 40,
