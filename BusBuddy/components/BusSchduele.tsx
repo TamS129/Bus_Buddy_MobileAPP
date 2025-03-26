@@ -8,6 +8,7 @@ interface BusScheduleProps {
     stopName: string;
     onClose: () => void;
     children?: React.ReactNode;
+    
 }
 
 const BusSchedule: React.FC<BusScheduleProps> = ({ stopName, onClose, children }) => {
