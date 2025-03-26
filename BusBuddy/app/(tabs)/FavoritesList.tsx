@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet, StatusBar } from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import axios from 'axios';
 
 const FavoriteStops = ({ userID }: { userID: string }) => {
@@ -31,15 +32,29 @@ const FavoriteStops = ({ userID }: { userID: string }) => {
   if (loading) return <ActivityIndicator />;
 
   return (
-    <View>
-      <Text style={{ fontSize: 18, fontWeight: 'bold', margin: 45 }}>Favorite Stops</Text>
+    <SafeAreaProvider>
+      <SafeAreaView>
+      <Text style={{ fontSize: 25, fontWeight: 'bold', margin: 45 }}>Favorite Stops</Text>
       <FlatList
         data={stopIDs}
         keyExtractor={(item) => item.toString()}
-        renderItem={({ item }) => <Text>Stop ID: {item}</Text>}
-      />
-    </View>
+        renderItem={({ item }) => <Text style={styles.container}>Stop ID: {item}</Text>}
+        />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    fontSize: 32,
+  },
+});
 
 export default FavoriteStops;
