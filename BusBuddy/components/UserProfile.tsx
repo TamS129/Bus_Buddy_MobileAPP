@@ -113,12 +113,6 @@ const UserProfile: React.FC<UserProfileProps> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    zIndex: 1000,
-  },
   loginButton: {
     backgroundColor: '#007bff',
     padding: 10,
