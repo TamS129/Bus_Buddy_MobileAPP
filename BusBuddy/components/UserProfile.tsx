@@ -51,7 +51,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.modalContainer}>
       {!isLoggedIn ? (
         <TouchableOpacity 
           onPress={() => setIsModalVisible(true)}
