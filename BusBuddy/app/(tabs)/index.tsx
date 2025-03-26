@@ -167,9 +167,11 @@ export default function App() {
 
     return (
       <View style={styles.container}>
-        <View style={styles.menuContainer}>
-          <Menu items={menuItems} />
-        </View>
+        {!selectedStop && (  
+          <View style={styles.menuContainer} pointerEvents={selectedStop ? "none" : "auto"}>
+            <Menu items={menuItems} />
+          </View>
+        )}
     
         {loading ? (
           <ActivityIndicator size="large" color="#0000ff" />
@@ -195,17 +197,17 @@ export default function App() {
           </MapView>
         ) : null}
     
-    {selectedStop && (
-      <BusSchduele stopName={selectedStop.stop_name} onClose={closeSchedule}>
-      <View style={styles.busSchedule}> 
-        {stopTimes.map((time, index) => (
-          <Text key={index}>
-            Arrival: {time.arrival_time}, Departure: {time.departure_time}
-          </Text>
-        ))}
-      </View>
-      </BusSchduele>
-)}
+        {selectedStop && (
+          <BusSchduele stopName={selectedStop.stop_name} onClose={closeSchedule}>
+            <View style={styles.busSchedule}>
+              {stopTimes.map((time, index) => (
+                <Text key={index}>
+                  Arrival: {time.arrival_time}, Departure: {time.departure_time}
+                </Text>
+              ))}
+            </View>
+          </BusSchduele>
+        )}
       </View>
     );
 }
@@ -232,6 +234,7 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'white', 
     padding: 10, 
-    zIndex: 1,  
+    zIndex:  1000,  
+    elevation: 10,   
   },
 });
