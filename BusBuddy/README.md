@@ -1,50 +1,52 @@
-# Welcome to your Expo app 👋
+# BusBuddy
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+BusBuddy is an easy to use app for finding and managing bus stations, lines, and stops in the greater Seattle area.
 
-## Get started
+This application is currently under development and requires a node.js and expo runtime environment. 
 
-1. Install dependencies
+To install node.js:
 
-   ```bash
-   npm install
-   ```
+### Windows: 
 
-2. Start the app
+Go to https://nodejs.org/en/download/ and download "Windows Installer", then run the windows installer.
 
-   ```bash
-    npx expo start
-   ```
+### MacOS and Linux:
 
-In the output, you'll find options to open the app in a
+Click on the finder menu and type "terminal". Start the terminal. Type `npm install -g npm` and press enter.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Git:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+You may also need to install Git:
 
-## Get a fresh project
+### Windows:
 
-When you're ready, run:
+Go to https://gitforwindows.org/ and click "Download". Run the downloaded installer.
 
-```bash
-npm run reset-project
-```
+### MacOS:
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Go to https://git-scm.com/downloads/mac and follow the directions to install Homebrew and Git.
 
-## Learn more
+## Join the Party!
 
-To learn more about developing your project with Expo, look at the following resources:
+Once node.js and git is installed, you can check out BusBuddy! At the terminal, type the following commands in order:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. `git clone https://github.com/TamS129/Bus_Buddy_MobileAPP.git`
+2. `cd Bus_Buddy_MobileAPP/BusBuddy`
+3. `npm install`
+4. `npx expo start`
 
-## Join the community
+Next you'll need to prepare your phone or emulator:
 
-Join our community of developers creating universal apps.
+1. Download the [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en-US&pli=1) app for Android. 
+2. Next connect your android phone to the PC with a USB cable.
+3. Return to the console and press the "a" key.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Notes:
+
+- This app needs to communicate with the server at **db.scholomance.io** on port **2501**.
+- The code provided in the `backend-code` folder is the source for `db.scholomance.io`.
+-  Backend code is provided as an example, and is not required to install or use BusBuddy.
+
+## Thanks!
+
+We hope you enjoy your early look, and have fun exploring the metro transit of King County!
