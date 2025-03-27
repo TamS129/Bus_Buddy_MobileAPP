@@ -1,11 +1,3 @@
-# HOW TO RUN BUS_BUDDY
-- Pull the repo locally
-- Open the newly downloaded repo in VSCode
-- Run "cd/busbuddy" on the terminal
-- Once having changed directories, run "npm install"
-- After all packages have been installed, run "npx expo start"
-## WILL NOT WORK ON THE WEB DUE TO THE DEPENDENCY ON REACT_NATIVE_MAPS
-
 # Work Attribution
 
 ### Tamara:
