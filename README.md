@@ -22,6 +22,11 @@ Flow-Graph:
 
 ### Ken:
 
+- Designed and implemented the global theme system with dark mode, dynamic font styles, and custom font color settings
+- Refactored UI to use global theme context (ThemeContext) across all screens
+- Implemented the Settings screen modal for user customization (theme, font, font color)
+- Integrated font and theme switching into all major screens (FavoritesList, AddFavorite, Map screen)
+
 ### Joe:
 
 - Developed database infrastructure
