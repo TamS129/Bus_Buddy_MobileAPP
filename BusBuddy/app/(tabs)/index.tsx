@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import MapView, { Region } from 'react-native-maps';
-import { StyleSheet, View, Alert, ActivityIndicator, Text } from 'react-native'; 
+import { StyleSheet, View, Alert, ActivityIndicator, Text, ScrollView } from 'react-native'; 
 import BusStopMarker from '../../components/BusMarker';
 import BusSchduele from '../../components/BusSchduele';
 import menu from '../../components/menu';
@@ -155,7 +155,7 @@ export default function App() {
         }
     };
 
-    //Handles closing the schdueler.
+    //Handles closing the schduele. 
     const closeSchedule = () => {
         setSelectedStop(null);
         setStopTimes([]);
@@ -199,42 +199,54 @@ export default function App() {
     
         {selectedStop && (
           <BusSchduele stopName={selectedStop.stop_name} onClose={closeSchedule}>
-            <View style={styles.busSchedule}>
-              {stopTimes.map((time, index) => (
-                <Text key={index}>
-                  Arrival: {time.arrival_time}, Departure: {time.departure_time}
-                </Text>
-              ))}
-            </View>
+            <ScrollView 
+              style={styles.busSchedule} 
+              contentContainerStyle={{ paddingBottom: 20 }} 
+            >
+              {stopTimes.length > 0 ? (
+                stopTimes.map((time, index) => (
+                  <Text key={index} style={styles.scheduleText}>
+                    Arrival: {time.arrival_time}, Departure: {time.departure_time}
+                  </Text>
+                ))
+              ) : (
+                <Text style={styles.noScheduleText}>No bus schedule available</Text>
+              )}
+            </ScrollView>
           </BusSchduele>
         )}
       </View>
     );
-}
+  }    
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative',
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-  menuContainer: {
-    position: 'absolute', 
-    top: 10,
-    right: 10,
-    zIndex: 1000, 
-  },
-  busSchedule: {
-    position: 'absolute', 
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'white', 
-    padding: 10, 
-    zIndex:  1000,  
-    elevation: 10,   
-  },
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      position: 'relative',
+    },
+    map: {
+      width: '100%',
+      height: '100%',
+    },
+    menuContainer: {
+      position: 'absolute', 
+      top: 10,
+      right: 10,
+      zIndex: 1000, 
+    },
+    busSchedule: {
+      zIndex: 1000,  
+      elevation: 10,
+    },
+    scheduleText: {
+      fontSize: 14,
+      marginVertical: 5,
+      color: "#333",
+    },
+    noScheduleText: {
+      fontSize: 16,
+      textAlign: 'center',
+      color: 'gray',
+      marginTop: 20,
+    },
 });

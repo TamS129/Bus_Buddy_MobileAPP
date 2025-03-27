@@ -1,14 +1,10 @@
-/*
-Component that contains the template and CSS for Our bus schduele
-*/
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 
 interface BusScheduleProps {
     stopName: string;
     onClose: () => void;
     children?: React.ReactNode;
-    
 }
 
 const BusSchedule: React.FC<BusScheduleProps> = ({ stopName, onClose, children }) => {
@@ -22,7 +18,16 @@ const BusSchedule: React.FC<BusScheduleProps> = ({ stopName, onClose, children }
                 <Text style={styles.closeText}>✕</Text>
             </TouchableOpacity>
             <Text style={styles.header}>Schedule for {stopName}</Text>
-            <View style={styles.content}>{children}</View>
+
+            <View style={styles.scrollWrapper}>
+                <ScrollView 
+                    style={styles.scrollContainer} 
+                    contentContainerStyle={styles.scrollContent}
+                    keyboardShouldPersistTaps="handled"
+                >
+                    {children}
+                </ScrollView>
+            </View>
         </View>
     );
 };
@@ -30,7 +35,7 @@ const BusSchedule: React.FC<BusScheduleProps> = ({ stopName, onClose, children }
 const styles = StyleSheet.create({
     container: {
         width: 280,
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.95)", 
         borderLeftWidth: 2,
         borderLeftColor: "#d3d3d3",
         paddingHorizontal: 20,
@@ -39,17 +44,16 @@ const styles = StyleSheet.create({
         top: 0,
         right: 0,
         bottom: 0,
-        shadowColor: "#000",
-        shadowOpacity: 0.2,
-        shadowOffset: { width: -2, height: 2 },
-        shadowRadius: 5,
-        elevation: 5,
+        elevation: 0,
+        shadowColor: "transparent", 
+        shadowOpacity: 0, 
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 0,
     },
     header: {
         fontSize: 18,
         fontWeight: "600",
         textAlign: "center",
-        marginTop: 20,  
         marginBottom: 20, 
         color: "#333",
     },
@@ -61,12 +65,19 @@ const styles = StyleSheet.create({
     },
     closeText: {
         fontSize: 18,
-        color: "#ff4d4d",
+        color: "#2DAEC5",
         fontWeight: "bold",
     },
-    content: {
-        flex: 1,
-        paddingTop: 20, 
+    scrollWrapper: {
+        flex: 1, 
+        overflow: "hidden", 
+    },
+    scrollContainer: {
+        flexGrow: 1, 
+        paddingBottom: 20,
+    },
+    scrollContent: {
+        paddingBottom: 20,
     },
 });
 

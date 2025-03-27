@@ -21,9 +21,7 @@ const BusStopMarker: React.FC<BusMarkerProps> = ({
      }) => {
     const handlePress = async () => {
         try {
-            // Update the secure storage with the new stop ID
             await SecureStore.setItemAsync('stop_id', stopID.toString());
-            // Call the onPress callback with the stop ID
             onPress(stopID);
         } catch (error) {
             console.error("Error updating stop ID in secure storage:", error);
